@@ -1,0 +1,219 @@
+{
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"cli": {
+		"analytics": "56c278df-056d-4c23-9c4f-17b9f95168ea"
+	},
+	"version": 1,
+	"newProjectRoot": "projects",
+	"projects": {
+		"header": {
+			"projectType": "application",
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				},
+				"@schematics/angular:application": {
+					"strict": true
+				}
+			},
+			"root": "project/header",
+			"sourceRoot": "project/header/src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "ngx-build-plus:browser",
+					"options": {
+						"outputPath": "dist/header",
+						"index": "project/header/src/index.html",
+						"main": "project/header/src/main.ts",
+						"polyfills": "project/header/src/polyfills.ts",
+						"tsConfig": "project/header/tsconfig.app.json",
+						"inlineStyleLanguage": "scss",
+						"styles": [
+							"project/header/src/styles.scss"
+						],
+						"scripts": [],
+						"extraWebpackConfig": "project/header/webpack.config.js",
+						"commonChunk": false
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kb",
+									"maximumError": "1mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "2kb",
+									"maximumError": "4kb"
+								}
+							],
+							"fileReplacements": [
+								{
+									"replace": "project/header/src/environments/environment.ts",
+									"with": "project/header/src/environments/environment.prod.ts"
+								}
+							],
+							"outputHashing": "all",
+							"extraWebpackConfig": "project/header/webpack.prod.config.js"
+						},
+						"development": {
+							"buildOptimizer": false,
+							"optimization": false,
+							"vendorChunk": true,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"namedChunks": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "ngx-build-plus:dev-server",
+					"configurations": {
+						"production": {
+							"browserTarget": "header:build:production",
+							"extraWebpackConfig": "project/header/webpack.prod.config.js"
+						},
+						"development": {
+							"browserTarget": "header:build:development"
+						}
+					},
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4000,
+						"extraWebpackConfig": "project/header/webpack.config.js"
+					}
+				},
+				"extract-i18n": {
+					"builder": "ngx-build-plus:extract-i18n",
+					"options": {
+						"browserTarget": "header:build",
+						"extraWebpackConfig": "project/header/webpack.config.js"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "project/header/src/test.ts",
+						"polyfills": "project/header/src/polyfills.ts",
+						"tsConfig": "project/header/tsconfig.spec.json",
+						"karmaConfig": "project/header/karma.conf.js",
+						"inlineStyleLanguage": "scss",
+						"styles": [
+							"project/header/src/styles.scss"
+						],
+						"scripts": []
+					}
+				}
+			}
+		},
+		"microapp": {
+			"projectType": "application",
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				},
+				"@schematics/angular:application": {
+					"strict": true
+				}
+			},
+			"root": "",
+			"sourceRoot": "project/microapp/src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "ngx-build-plus:browser",
+					"options": {
+						"outputPath": "dist/microapp",
+						"index": "project/microapp/src/index.html",
+						"main": "project/microapp/src/main.ts",
+						"polyfills": "project/microapp/src/polyfills.ts",
+						"tsConfig": "project/microapp/tsconfig.app.json",
+						"inlineStyleLanguage": "scss",
+						"styles": [
+							"project/microapp/src/styles.scss"
+						],
+						"scripts": [],
+						"extraWebpackConfig": "project/microapp/webpack.config.js",
+						"commonChunk": false
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kb",
+									"maximumError": "1mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "2kb",
+									"maximumError": "4kb"
+								}
+							],
+							"fileReplacements": [
+								{
+									"replace": "project/microapp/src/environments/environment.ts",
+									"with": "project/microapp/src/environments/environment.prod.ts"
+								}
+							],
+							"outputHashing": "all",
+							"extraWebpackConfig": "project/microapp/webpack.prod.config.js"
+						},
+						"development": {
+							"buildOptimizer": false,
+							"optimization": false,
+							"vendorChunk": true,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"namedChunks": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "ngx-build-plus:dev-server",
+					"configurations": {
+						"production": {
+							"browserTarget": "microapp:build:production",
+							"extraWebpackConfig": "project/microapp/webpack.prod.config.js"
+						},
+						"development": {
+							"browserTarget": "microapp:build:development"
+						}
+					},
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4200,
+						"extraWebpackConfig": "project/microapp/webpack.config.js"
+					}
+				},
+				"extract-i18n": {
+					"builder": "ngx-build-plus:extract-i18n",
+					"options": {
+						"browserTarget": "microapp:build",
+						"extraWebpackConfig": "project/microapp/webpack.config.js"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "project/microapp/src/test.ts",
+						"polyfills": "project/microapp/src/polyfills.ts",
+						"tsConfig": "project/microapp/tsconfig.spec.json",
+						"karmaConfig": "project/microapp/karma.conf.js",
+						"inlineStyleLanguage": "scss",
+						"styles": [
+							"project/microapp/src/styles.scss"
+						],
+						"scripts": []
+					}
+				}
+			}
+		}
+	},
+	"defaultProject": "header"
+}
